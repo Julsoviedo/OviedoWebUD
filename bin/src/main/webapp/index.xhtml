@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+    Autor: Julián David Oviedo
+    Asignatura: Programación Avanzada - Grupo 302
+    Universidad Distrital Francisco José de Caldas - 2026
+    Vista: Página de inicio del sistema de registro de aspirantes
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>OviedoWebUD | Inicio</title>
+    <h:outputStylesheet library="css" name="estilo.css"/>
+</h:head>
+
+<h:body>
+
+    <!-- Barra de navegación -->
+    <header class="navbar-ud">
+        <a class="brand" href="index.xhtml">
+            🎓 OviedoWebUD <span class="tag">UD</span>
+        </a>
+        <nav>
+            <a href="registro.xhtml">Registro</a>
+            <a href="admin.xhtml">Administrador</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-container">
+        <div class="card-ud">
+            <div class="card-header-ud">
+                <h2>Sistema de Registro de Aspirantes</h2>
+                <p>Universidad Distrital Francisco José de Caldas</p>
+            </div>
+            <div class="card-body-ud">
+
+                <div class="hero-ud">
+                    <h1>¡Bienvenido!</h1>
+                    <p>Seleccione una opción para continuar</p>
+
+                    <div class="hero-cards">
+
+                        <!-- Tarjeta Registro -->
+                        <a class="hero-action-card" href="registro.xhtml">
+                            <span class="icon">📝</span>
+                            <h3>Registro de Aspirante</h3>
+                            <p>Completa tu formulario de inscripción para los programas académicos disponibles.</p>
+                        </a>
+
+                        <!-- Tarjeta Administrador -->
+                        <a class="hero-action-card" href="admin.xhtml">
+                            <span class="icon">📋</span>
+                            <h3>Vista Administrador</h3>
+                            <p>Consulta el listado completo de aspirantes registrados en el sistema.</p>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-ud">
+        <strong>Julián David Oviedo</strong> &nbsp;|&nbsp;
+        Programación Avanzada - Grupo 302 &nbsp;|&nbsp;
+        Universidad Distrital Francisco José de Caldas &nbsp;|&nbsp; 2026
+    </footer>
+
+</h:body>
+</html>

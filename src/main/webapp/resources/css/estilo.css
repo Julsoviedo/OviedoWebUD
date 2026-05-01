@@ -1,0 +1,461 @@
+/* =========================================================
+   OviedoWebUD - Estilos personalizados
+   Autor: Julián David Oviedo
+   Asignatura: Programación Avanzada - Grupo 302
+   Universidad Distrital Francisco José de Caldas - 2026
+   ========================================================= */
+
+/* ── Variables de color institucional ── */
+:root {
+    --ud-verde:     #006633;
+    --ud-verde-osc: #004d26;
+    --ud-amarillo:  #ffcc00;
+    --ud-blanco:    #ffffff;
+    --ud-gris-claro:#f4f6f9;
+    --ud-gris:      #6c757d;
+    --sombra:       0 4px 16px rgba(0,0,0,0.10);
+}
+
+/* ── Reset básico ── */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--ud-gris-claro);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Barra de navegación ── */
+.navbar-ud {
+    background: linear-gradient(135deg, var(--ud-verde-osc) 0%, var(--ud-verde) 100%);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--sombra);
+}
+
+.navbar-ud .brand {
+    color: var(--ud-blanco);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-ud .brand span.tag {
+    background-color: var(--ud-amarillo);
+    color: var(--ud-verde-osc);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.navbar-ud nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.navbar-ud nav a:hover {
+    color: var(--ud-amarillo);
+}
+
+/* ── Contenedor principal ── */
+.main-container {
+    flex: 1;
+    max-width: 860px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+/* ── Tarjeta (card) ── */
+.card-ud {
+    background: var(--ud-blanco);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+}
+
+.card-header-ud {
+    background: linear-gradient(135deg, var(--ud-verde-osc) 0%, var(--ud-verde) 100%);
+    padding: 1.4rem 2rem;
+    color: var(--ud-blanco);
+}
+
+.card-header-ud h2 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.card-header-ud p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.card-body-ud {
+    padding: 2rem;
+}
+
+/* ── Formulario ── */
+.form-group {
+    margin-bottom: 1.4rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #444;
+    font-size: 0.92rem;
+}
+
+.form-group label .requerido {
+    color: #dc3545;
+    margin-left: 2px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group .ui-inputfield {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1.5px solid #ced4da;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: #fdfdfd;
+    color: #333;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--ud-verde);
+    box-shadow: 0 0 0 3px rgba(0,102,51,0.15);
+    background-color: #fff;
+}
+
+/* ── Mensajes de error JSF ── */
+.ui-message-error,
+.error-msg {
+    color: #dc3545;
+    font-size: 0.83rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+.ui-messages-error {
+    background-color: #fff3f3;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    color: #721c24;
+    font-size: 0.9rem;
+}
+
+/* ── Botones ── */
+.btn-ud {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-decoration: none;
+}
+
+.btn-ud:active {
+    transform: scale(0.97);
+}
+
+.btn-primary-ud {
+    background: linear-gradient(135deg, var(--ud-verde-osc), var(--ud-verde));
+    color: var(--ud-blanco);
+}
+
+.btn-primary-ud:hover {
+    background: linear-gradient(135deg, #003d1a, var(--ud-verde-osc));
+}
+
+.btn-secondary-ud {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.btn-secondary-ud:hover {
+    background: #dee2e6;
+}
+
+.btn-warning-ud {
+    background: var(--ud-amarillo);
+    color: var(--ud-verde-osc);
+}
+
+.btn-warning-ud:hover {
+    background: #e6b800;
+}
+
+.btn-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+/* ── Alerta de éxito ── */
+.alert-success-ud {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    color: #155724;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.alert-success-ud::before {
+    content: "✓";
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* ── Tabla de aspirantes ── */
+.tabla-aspirantes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.tabla-aspirantes thead th {
+    background: linear-gradient(135deg, var(--ud-verde-osc), var(--ud-verde));
+    color: var(--ud-blanco);
+    padding: 0.8rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+}
+
+.tabla-aspirantes thead th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.tabla-aspirantes thead th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.tabla-aspirantes tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background 0.15s;
+}
+
+.tabla-aspirantes tbody tr:hover {
+    background-color: #f0f7f3;
+}
+
+.tabla-aspirantes tbody tr:nth-child(even) {
+    background-color: #f8fbf9;
+}
+
+.tabla-aspirantes tbody tr:nth-child(even):hover {
+    background-color: #e8f4ec;
+}
+
+.tabla-aspirantes td {
+    padding: 0.75rem 1rem;
+    color: #444;
+}
+
+.badge-programa {
+    display: inline-block;
+    background-color: #e8f4ec;
+    color: var(--ud-verde-osc);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* ── Panel de estadísticas ── */
+.stats-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 140px;
+    background: var(--ud-blanco);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: var(--sombra);
+    text-align: center;
+    border-top: 4px solid var(--ud-verde);
+}
+
+.stat-card .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--ud-verde);
+    display: block;
+}
+
+.stat-card .stat-label {
+    font-size: 0.8rem;
+    color: var(--ud-gris);
+    margin-top: 0.2rem;
+}
+
+/* ── Tabla vacía ── */
+.tabla-vacia {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--ud-gris);
+}
+
+.tabla-vacia .icon-empty {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.8rem;
+    opacity: 0.4;
+}
+
+/* ── Página de inicio (index) ── */
+.hero-ud {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.hero-ud h1 {
+    font-size: 2rem;
+    color: var(--ud-verde-osc);
+    margin-bottom: 0.5rem;
+}
+
+.hero-ud p {
+    color: var(--ud-gris);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+.hero-cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-action-card {
+    background: var(--ud-blanco);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    padding: 2rem 2.5rem;
+    width: 240px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.hero-action-card:hover {
+    border-color: var(--ud-verde);
+    transform: translateY(-4px);
+    color: #333;
+}
+
+.hero-action-card .icon {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.hero-action-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.4rem 0;
+    color: var(--ud-verde-osc);
+}
+
+.hero-action-card p {
+    font-size: 0.85rem;
+    color: var(--ud-gris);
+    margin: 0;
+}
+
+/* ── Fila de dos columnas ── */
+.form-row {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* ── Footer ── */
+.footer-ud {
+    background: linear-gradient(135deg, var(--ud-verde-osc) 0%, var(--ud-verde) 100%);
+    color: rgba(255,255,255,0.82);
+    text-align: center;
+    padding: 1.2rem 1rem;
+    font-size: 0.83rem;
+    margin-top: auto;
+}
+
+.footer-ud strong {
+    color: var(--ud-amarillo);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .navbar-ud nav {
+        display: none;
+    }
+
+    .stats-bar {
+        flex-direction: column;
+    }
+
+    .tabla-aspirantes {
+        font-size: 0.78rem;
+    }
+
+    .tabla-aspirantes td, .tabla-aspirantes th {
+        padding: 0.5rem 0.6rem;
+    }
+}

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+    Autor: Julián David Oviedo
+    Asignatura: Programación Avanzada - Grupo 302
+    Universidad Distrital Francisco José de Caldas - 2026
+    Vista: Formulario de registro de aspirante universitario
+    Incluye validaciones en todos los campos y retroalimentación visual al usuario
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>OviedoWebUD | Registro de Aspirante</title>
+    <h:outputStylesheet library="css" name="estilo.css"/>
+</h:head>
+
+<h:body>
+
+    <!-- Barra de navegación -->
+    <header class="navbar-ud">
+        <a class="brand" href="index.xhtml">
+            🎓 OviedoWebUD <span class="tag">UD</span>
+        </a>
+        <nav>
+            <a href="index.xhtml">Inicio</a>
+            <a href="registro.xhtml">Registro</a>
+            <a href="admin.xhtml">Administrador</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-container">
+        <div class="card-ud">
+
+            <div class="card-header-ud">
+                <h2>📝 Registro de Aspirante</h2>
+                <p>Todos los campos marcados con * son obligatorios</p>
+            </div>
+
+            <div class="card-body-ud">
+
+                <h:form id="formRegistro">
+
+                    <!-- Mensajes globales del formulario -->
+                    <h:messages globalOnly="false" styleClass="ui-messages-error"
+                                showDetail="true" showSummary="false" errorClass="ui-messages-error"/>
+
+                    <!-- Alerta de éxito -->
+                    <h:panelGroup rendered="#{aspiranteBean.registroExitoso}">
+                        <div class="alert-success-ud">
+                            <h:outputText value="#{aspiranteBean.mensajeResultado}"/>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- ── Fila 1: Identificación y Teléfono ── -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <h:outputLabel for="idPersona">
+                                No. Identificación <span class="requerido">*</span>
+                            </h:outputLabel>
+                            <h:inputText id="idPersona"
+                                         value="#{aspiranteBean.dto.idPersona}"
+                                         required="true"
+                                         requiredMessage="La identificación es requerida."
+                                         converterMessage="Ingrese solo números en la identificación."
+                                         validatorMessage="La identificación debe ser un número entero positivo."
+                                         styleClass="form-input"
+                                         maxlength="15">
+                                <f:validateLongRange minimum="1" maximum="9999999999"/>
+                            </h:inputText>
+                            <h:message for="idPersona" styleClass="error-msg"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="telefono">
+                                Teléfono <span class="requerido">*</span>
+                            </h:outputLabel>
+                            <h:inputText id="telefono"
+                                         value="#{aspiranteBean.dto.telefono}"
+                                         required="true"
+                                         requiredMessage="El teléfono es requerido."
+                                         validatorMessage="El teléfono debe tener entre 7 y 15 caracteres."
+                                         maxlength="15">
+                                <f:validateLength minimum="7" maximum="15"/>
+                            </h:inputText>
+                            <h:message for="telefono" styleClass="error-msg"/>
+                        </div>
+
+                    </div>
+
+                    <!-- ── Fila 2: Nombres y Apellidos ── -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <h:outputLabel for="nombres">
+                                Nombres <span class="requerido">*</span>
+                            </h:outputLabel>
+                            <h:inputText id="nombres"
+                                         value="#{aspiranteBean.dto.nombres}"
+                                         required="true"
+                                         requiredMessage="Los nombres son requeridos."
+                                         validatorMessage="Los nombres deben tener entre 2 y 80 caracteres."
+                                         maxlength="80">
+                                <f:validateLength minimum="2" maximum="80"/>
+                            </h:inputText>
+                            <h:message for="nombres" styleClass="error-msg"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="apellidos">
+                                Apellidos <span class="requerido">*</span>
+                            </h:outputLabel>
+                            <h:inputText id="apellidos"
+                                         value="#{aspiranteBean.dto.apellidos}"
+                                         required="true"
+                                         requiredMessage="Los apellidos son requeridos."
+                                         validatorMessage="Los apellidos deben tener entre 2 y 80 caracteres."
+                                         maxlength="80">
+                                <f:validateLength minimum="2" maximum="80"/>
+                            </h:inputText>
+                            <h:message for="apellidos" styleClass="error-msg"/>
+                        </div>
+
+                    </div>
+
+                    <!-- ── Correo electrónico ── -->
+                    <div class="form-group">
+                        <h:outputLabel for="correo">
+                            Correo Electrónico <span class="requerido">*</span>
+                        </h:outputLabel>
+                        <h:inputText id="correo"
+                                     value="#{aspiranteBean.dto.correo}"
+                                     required="true"
+                                     requiredMessage="El correo electrónico es requerido."
+                                     validatorMessage="Ingrese un correo electrónico válido (máx. 100 caracteres)."
+                                     maxlength="100">
+                            <f:validateLength minimum="6" maximum="100"/>
+                            <f:validateRegex pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"/>
+                        </h:inputText>
+                        <h:message for="correo" styleClass="error-msg"/>
+                    </div>
+
+                    <!-- ── Programa académico ── -->
+                    <div class="form-group">
+                        <h:outputLabel for="programaAcademico">
+                            Programa Académico de Interés <span class="requerido">*</span>
+                        </h:outputLabel>
+                        <h:selectOneMenu id="programaAcademico"
+                                         value="#{aspiranteBean.indiceProgramaSeleccionado}"
+                                         required="true"
+                                         requiredMessage="Debe seleccionar un programa académico.">
+                            <!-- Opción vacía de no selección -->
+                            <f:selectItem itemValue="-1"
+                                          itemLabel="-- Seleccione un programa --"
+                                          noSelectionOption="true"/>
+                            <!-- Opciones dinámicas desde el DAO -->
+                            <f:selectItems value="#{aspiranteBean.listaProgramas}"
+                                           var="prog"
+                                           itemValue="#{aspiranteBean.listaProgramas.indexOf(prog)}"
+                                           itemLabel="#{prog.nombre}"/>
+                        </h:selectOneMenu>
+                        <h:message for="programaAcademico" styleClass="error-msg"/>
+                    </div>
+
+                    <!-- ── Botones de acción ── -->
+                    <div class="btn-row">
+                        <h:commandButton value="✔ Registrar Aspirante"
+                                         action="#{aspiranteBean.registrar}"
+                                         styleClass="btn-ud btn-primary-ud">
+                            <f:ajax execute="@form" render="@form"/>
+                        </h:commandButton>
+
+                        <h:commandButton value="✖ Limpiar"
+                                         action="#{aspiranteBean.limpiarFormulario}"
+                                         immediate="true"
+                                         styleClass="btn-ud btn-secondary-ud">
+                            <f:ajax execute="@this" render="@form"/>
+                        </h:commandButton>
+
+                        <h:commandButton value="📋 Ver Listado"
+                                         action="#{aspiranteBean.irAdmin}"
+                                         immediate="true"
+                                         styleClass="btn-ud btn-warning-ud"/>
+                    </div>
+
+                </h:form>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-ud">
+        <strong>Julián David Oviedo</strong> &nbsp;|&nbsp;
+        Programación Avanzada - Grupo 302 &nbsp;|&nbsp;
+        Universidad Distrital Francisco José de Caldas &nbsp;|&nbsp; 2026
+    </footer>
+
+</h:body>
+</html>

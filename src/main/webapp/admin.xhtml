@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+    Autor: Julián David Oviedo
+    Asignatura: Programación Avanzada - Grupo 302
+    Universidad Distrital Francisco José de Caldas - 2026
+    Vista: Panel de administrador con listado de aspirantes registrados en tabla
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>OviedoWebUD | Administrador</title>
+    <h:outputStylesheet library="css" name="estilo.css"/>
+</h:head>
+
+<h:body>
+
+    <!-- Barra de navegación -->
+    <header class="navbar-ud">
+        <a class="brand" href="index.xhtml">
+            🎓 OviedoWebUD <span class="tag">UD</span>
+        </a>
+        <nav>
+            <a href="index.xhtml">Inicio</a>
+            <a href="registro.xhtml">Registro</a>
+            <a href="admin.xhtml">Administrador</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-container" style="max-width: 1100px;">
+
+        <!-- ── Estadísticas rápidas ── -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <span class="stat-num">
+                    <h:outputText value="#{aspiranteBean.totalRegistros}"/>
+                </span>
+                <span class="stat-label">Aspirantes Registrados</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">6</span>
+                <span class="stat-label">Programas Disponibles</span>
+            </div>
+        </div>
+
+        <!-- ── Tabla de aspirantes ── -->
+        <div class="card-ud">
+
+            <div class="card-header-ud">
+                <h2>📋 Vista Administrador — Listado de Aspirantes</h2>
+                <p>Registro completo de aspirantes inscritos en el sistema</p>
+            </div>
+
+            <div class="card-body-ud">
+
+                <h:form id="formAdmin">
+
+                    <!-- Tabla cuando hay registros -->
+                    <h:panelGroup rendered="#{not aspiranteBean.listaAspirantes.isEmpty()}">
+
+                        <h:dataTable value="#{aspiranteBean.listaAspirantes}"
+                                     var="aspirante"
+                                     styleClass="tabla-aspirantes">
+
+                            <!-- N° -->
+                            <h:column>
+                                <f:facet name="header">N°</f:facet>
+                                <h:outputText value="#{aspiranteBean.listaAspirantes.indexOf(aspirante) + 1}"/>
+                            </h:column>
+
+                            <!-- Fecha de registro -->
+                            <h:column>
+                                <f:facet name="header">Fecha Registro</f:facet>
+                                <h:outputText value="#{aspirante.fechaRegistro}"/>
+                            </h:column>
+
+                            <!-- Identificación -->
+                            <h:column>
+                                <f:facet name="header">Identificación</f:facet>
+                                <h:outputText value="#{aspirante.idPersona}"/>
+                            </h:column>
+
+                            <!-- Nombres -->
+                            <h:column>
+                                <f:facet name="header">Nombres</f:facet>
+                                <h:outputText value="#{aspirante.nombres}"/>
+                            </h:column>
+
+                            <!-- Apellidos -->
+                            <h:column>
+                                <f:facet name="header">Apellidos</f:facet>
+                                <h:outputText value="#{aspirante.apellidos}"/>
+                            </h:column>
+
+                            <!-- Correo -->
+                            <h:column>
+                                <f:facet name="header">Correo</f:facet>
+                                <h:outputText value="#{aspirante.correo}"/>
+                            </h:column>
+
+                            <!-- Teléfono -->
+                            <h:column>
+                                <f:facet name="header">Teléfono</f:facet>
+                                <h:outputText value="#{aspirante.telefono}"/>
+                            </h:column>
+
+                            <!-- Programa académico -->
+                            <h:column>
+                                <f:facet name="header">Programa Académico</f:facet>
+                                <span class="badge-programa">
+                                    <h:outputText value="#{aspirante.programaAcademico.nombre}"/>
+                                </span>
+                            </h:column>
+
+                        </h:dataTable>
+
+                    </h:panelGroup>
+
+                    <!-- Mensaje cuando no hay registros -->
+                    <h:panelGroup rendered="#{aspiranteBean.listaAspirantes.isEmpty()}">
+                        <div class="tabla-vacia">
+                            <span class="icon-empty">📭</span>
+                            No hay aspirantes registrados aún.
+                            <br/>
+                            <a href="registro.xhtml" style="color: #006633; font-weight: 600;">
+                                Registrar el primer aspirante →
+                            </a>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- Botón de ir a registrar -->
+                    <div class="btn-row" style="margin-top: 1.5rem;">
+                        <h:commandButton value="➕ Registrar Nuevo Aspirante"
+                                         action="#{aspiranteBean.irRegistro}"
+                                         styleClass="btn-ud btn-primary-ud"/>
+                    </div>
+
+                </h:form>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-ud">
+        <strong>Julián David Oviedo</strong> &nbsp;|&nbsp;
+        Programación Avanzada - Grupo 302 &nbsp;|&nbsp;
+        Universidad Distrital Francisco José de Caldas &nbsp;|&nbsp; 2026
+    </footer>
+
+</h:body>
+</html>
