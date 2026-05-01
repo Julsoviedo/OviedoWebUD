@@ -1,4 +1,4 @@
-# 🎓 OviedoWebUD — Registro de Aspirantes Universitarios
+# OviedoWebUD — Registro de Aspirantes Universitarios
 
 > **Universidad Distrital Francisco José de Caldas**  
 > Asignatura: Programación Avanzada | Grupo 302 | 2026  
@@ -6,13 +6,13 @@
 
 ---
 
-## 📋 Descripción
+## Descripción
 
 Aplicación web desarrollada con **Java JSF (Jakarta Faces)** y **Maven** que permite el registro y consulta de aspirantes universitarios. Incluye un simulador de CDT (Certificado de Depósito a Término).
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 El proyecto sigue el patrón **MVC (Model-View-Controller)** organizado en capas:
 
@@ -40,7 +40,7 @@ OviedoWebUD/
 
 ---
 
-## 🚀 Módulos
+## Módulos
 
 ### 1. Registro de Aspirantes
 - Formulario de inscripción con validaciones completas
@@ -56,7 +56,7 @@ OviedoWebUD/
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 | Tecnología | Versión | Uso |
 |---|---|---|
@@ -69,7 +69,7 @@ OviedoWebUD/
 
 ---
 
-## ⚙️ Requisitos para ejecutar
+## Requisitos para ejecutar
 
 - Java JDK 21+
 - Apache Maven 3.8+ (o Eclipse con Maven integrado)
@@ -78,7 +78,7 @@ OviedoWebUD/
 
 ---
 
-## 📦 Instalación y ejecución
+## Instalación y ejecución
 
 ### Con Eclipse IDE
 
@@ -100,7 +100,7 @@ mvn clean package
 
 ---
 
-## 📌 Commits del proyecto
+## Commits del proyecto
 
 | Commit | Descripción |
 |---|---|
@@ -111,13 +111,13 @@ mvn clean package
 
 ---
 
-## 📐 Diagrama de Clases
+## Diagrama de Clases
 
-El diagrama de clases se encuentra en el archivo `DiagramaClases_OviedoWebUD.drawio` en la raíz del repositorio.
+El diagrama de clases se encuentra en el archivo `OviedoWebUD_DiagramaClases.drawio.png` en la raíz del repositorio.
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 **Julián David Oviedo**  
 Programación Avanzada — Grupo 302  
