@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+    Autor: Julián David Oviedo
+    Asignatura: Programación Avanzada - Grupo 302
+    Universidad Distrital Francisco José de Caldas - 2026
+    Vista: Resultado de la simulación CDT con desglose completo
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>OviedoWebUD | Resultado CDT</title>
+    <h:outputStylesheet library="css" name="estilo.css"/>
+    <style>
+        /* Estilos adicionales para la vista de resultados */
+        .resultado-card {
+            background: linear-gradient(135deg, #004d26 0%, #006633 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .resultado-card .monto {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #ffcc00;
+            display: block;
+            margin: .5rem 0;
+        }
+        .resultado-card .label-monto {
+            font-size: .9rem;
+            opacity: .85;
+        }
+        .desglose {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .desglose-item {
+            flex: 1;
+            min-width: 160px;
+            background: #f4f6f4;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border-top: 3px solid #006633;
+        }
+        .desglose-item .d-label {
+            font-size: .8rem;
+            color: #666;
+            margin-bottom: .3rem;
+        }
+        .desglose-item .d-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #004d26;
+        }
+        .historial-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .88rem;
+        }
+        .historial-table th {
+            background: #006633;
+            color: #fff;
+            padding: .6rem .8rem;
+            text-align: left;
+        }
+        .historial-table td {
+            padding: .55rem .8rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .historial-table tr:nth-child(even) td { background: #f8fbf8; }
+        .ganancia { color: #006633; font-weight: 700; }
+    </style>
+</h:head>
+
+<h:body>
+
+    <header class="navbar-ud">
+        <a class="brand" href="index.xhtml">🎓 OviedoWebUD <span class="tag">UD</span></a>
+        <nav>
+            <a href="index.xhtml">Inicio</a>
+            <a href="registro.xhtml">Registro</a>
+            <a href="admin.xhtml">Administrador</a>
+            <a href="simuladorCDT.xhtml">Simulador CDT</a>
+        </nav>
+    </header>
+
+    <main class="main-container" style="max-width:900px;">
+
+        <h:panelGroup rendered="#{cdtBean.resultadoDisponible}">
+
+            <!-- ── Resultado principal ── -->
+            <div class="resultado-card">
+                <span class="label-monto">💰 Valor al Vencimiento</span>
+                <span class="monto"><h:outputText value="#{cdtBean.valorFinalFormateado}"/></span>
+                <span style="font-size:.9rem;opacity:.85;">
+                    Plazo: <h:outputText value="#{cdtBean.ultimaSimulacion.plazo}"/>
+                    <h:outputText value=" #{cdtBean.nombreTipoPlazo}"/>
+                    (= <h:outputText value="#{cdtBean.ultimaSimulacion.plazoEnDias}"/> días)
+                    &nbsp;|&nbsp;
+                    TEA: <h:outputText value="#{cdtBean.ultimaSimulacion.tasaEA}"/>%
+                </span>
+            </div>
+
+            <!-- ── Desglose ── -->
+            <div class="desglose">
+                <div class="desglose-item">
+                    <div class="d-label">📥 Capital Inicial</div>
+                    <div class="d-value"><h:outputText value="#{cdtBean.capitalFormateado}"/></div>
+                </div>
+                <div class="desglose-item">
+                    <div class="d-label">📈 Intereses Generados</div>
+                    <div class="d-value ganancia"><h:outputText value="#{cdtBean.interesesFormateados}"/></div>
+                </div>
+                <div class="desglose-item">
+                    <div class="d-label">📊 Tasa Nominal Mensual</div>
+                    <div class="d-value"><h:outputText value="#{cdtBean.tasaNominalFormateada}"/></div>
+                </div>
+                <div class="desglose-item">
+                    <div class="d-label">🗓️ Fecha de Simulación</div>
+                    <div class="d-value" style="font-size:1rem;">
+                        <h:outputText value="#{cdtBean.ultimaSimulacion.fechaSimulacion}"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Fórmula aplicada ── -->
+            <div style="background:#f4f6f4;border-radius:8px;padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:.88rem;color:#444;">
+                <strong>📐 Fórmula aplicada:</strong>
+                VF = Capital × (1 + TEA)<sup>días/365</sup><br/>
+                VF = <h:outputText value="#{cdtBean.capitalFormateado}"/>
+                × (1 + <h:outputText value="#{cdtBean.ultimaSimulacion.tasaEA}"/>%)<sup><h:outputText value="#{cdtBean.ultimaSimulacion.plazoEnDias}"/>/365</sup>
+                = <strong><h:outputText value="#{cdtBean.valorFinalFormateado}"/></strong>
+            </div>
+
+        </h:panelGroup>
+
+        <!-- Sin resultados -->
+        <h:panelGroup rendered="#{not cdtBean.resultadoDisponible}">
+            <div class="tabla-vacia">
+                <span class="icon-empty">📊</span>
+                No hay resultados disponibles.
+                <br/>
+                <a href="simuladorCDT.xhtml" style="color:#006633;font-weight:600;">Ir al Simulador →</a>
+            </div>
+        </h:panelGroup>
+
+        <!-- ── Historial de simulaciones ── -->
+        <div class="card-ud" style="margin-top:1.5rem;">
+            <div class="card-header-ud">
+                <h2>📋 Historial de Simulaciones</h2>
+                <p>Simulaciones realizadas en esta sesión: <h:outputText value="#{cdtBean.totalSimulaciones}"/></p>
+            </div>
+            <div class="card-body-ud">
+
+                <h:panelGroup rendered="#{not cdtBean.historial.isEmpty()}">
+                    <h:dataTable value="#{cdtBean.historial}" var="s" styleClass="historial-table">
+                        <h:column>
+                            <f:facet name="header">N°</f:facet>
+                            <h:outputText value="#{cdtBean.historial.indexOf(s) + 1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{s.fechaSimulacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Capital</f:facet>
+                            <h:outputText value="#{s.capitalInicial}">
+                                <f:convertNumber type="currency" currencySymbol="$" groupingUsed="true" maxFractionDigits="0"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">TEA %</f:facet>
+                            <h:outputText value="#{s.tasaEA}"/>%
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Plazo</f:facet>
+                            <h:outputText value="#{s.plazo}"/> <h:outputText value="#{s.tipoPlazo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Intereses</f:facet>
+                            <span class="ganancia">
+                                <h:outputText value="#{s.interesesGenerados}">
+                                    <f:convertNumber type="currency" currencySymbol="$" groupingUsed="true" maxFractionDigits="0"/>
+                                </h:outputText>
+                            </span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Valor Final</f:facet>
+                            <strong>
+                                <h:outputText value="#{s.valorFinal}">
+                                    <f:convertNumber type="currency" currencySymbol="$" groupingUsed="true" maxFractionDigits="0"/>
+                                </h:outputText>
+                            </strong>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{cdtBean.historial.isEmpty()}">
+                    <p style="color:#888;text-align:center;padding:1rem;">No hay simulaciones en el historial aún.</p>
+                </h:panelGroup>
+
+                <div class="btn-row" style="margin-top:1.2rem;">
+                    <h:form>
+                        <h:commandButton value="➕ Nueva Simulación"
+                                         action="#{cdtBean.irSimulador}"
+                                         styleClass="btn-ud btn-primary-ud"/>
+                        <h:commandButton value="🏠 Ir al Inicio"
+                                         action="#{cdtBean.irInicio}"
+                                         styleClass="btn-ud btn-secondary-ud"/>
+                    </h:form>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer-ud">
+        <strong>Julián David Oviedo</strong> &nbsp;|&nbsp;
+        Programación Avanzada - Grupo 302 &nbsp;|&nbsp;
+        Universidad Distrital Francisco José de Caldas &nbsp;|&nbsp; 2026
+    </footer>
+
+</h:body>
+</html>
